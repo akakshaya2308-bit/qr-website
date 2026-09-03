@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>QR Code Generator</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- qrcodejs (small and works without build tools) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <main class="container">
+    <h1>QR Code Generator</h1>
+
+    <label for="input">Paste a link or type a username</label>
+    <input id="input" placeholder="https://example.com or username" aria-label="Input">
+
+    <div class="row">
+      <label><input type="checkbox" id="deterministic"> Deterministic (same QR for same username)</label>
+      <label>Size: <input id="size" type="number" value="256" min="64" max="1024"></label>
+    </div>
+
+    <div class="row">
+      <label>Foreground: <input id="fg" type="color" value="#000000"></label>
+      <label>Background: <input id="bg" type="color" value="#ffffff"></label>
+    </div>
+
+    <div class="buttons">
+      <button id="generate">Generate QR</button>
+        <button id="downloadHighRes" disabled>Download PNG (High-res)</button>
+        <button id="download" disabled>Download PNG</button>
+      <button id="copyPayload" disabled>Copy Payload</button>
+    </div>
+
+    <section class="preview">
+      <div id="qrcode"></div>
+      <pre id="payload" class="payload"></pre>
+    </section>
+
+    <footer>
+      <small>Input that starts with <code>http://</code> or <code>https://</code> is treated as a direct URL. Usernames are encoded as <code>user:NAME|id:ID</code>.</small>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
